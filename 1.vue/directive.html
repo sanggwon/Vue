@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{number}}</h1>
+        <!-- <button v-on:click="decrement">감소</button>
+        <button v-on:click="increment">증가</button> -->
+        <!-- v-on 생략가능 -->
+        <button @click="decrement">감소</button>
+        <button @click="increment">증가</button>
+
+        <h1 v-show="visible">{{message}}</h1>
+        <!-- 단순히 on-off로 보여주기를 위함 -->
+        <h1 v-if="value > 5">value가 5보다 큽니다.</h1>
+        <h1 v-else-if="value > 3">value가 5보다 작고 3보다 큽니다.</h1>
+        <h1 v-else>value가 3보다 작습니다.</h1>
+
+        <ul>
+            <li v-for="(todo,index) in todos">{{index}} - {{todo.text}}</li>
+            <!-- 첫번째는 변수, 두번째는 인덱스로 -->
+        </ul>
+        <!-- <img v-bind:src="bongchu"> -->
+        <!-- v-bind생략가능 -->
+        <!-- <img :src="bongchu"> -->
+
+
+        <input type="checkbox" v-model="pa">
+        <br>
+        <img :src="pa ? padak:bongchu">
+        <!-- 삼항연산자 -->
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : "#app",
+            data : {
+                // delimiters: ["<%","%>"]
+                // 장고 문법이랑 겹쳐서 어떻게 쓸건지 정함
+                number : 0,
+                message : "안녕하세요",
+                visible : true,
+                value : 10,
+                todos : [
+                    {text : "vue공부하기"},
+                    {text : "장고공부하기"}
+                ],
+                pa : false,
+                bongchu:"http://mblogthumb2.phinf.naver.net/MjAxODA0MDFfNzUg/MDAxNTIyNTkzMDYyNDU4.I8ANIPBsONwMS_wInDzKAqUHhtQbK2ze-ISK4sjPPJsg.xe376nyqcgTpsfIaSrZ_UkovGVHHU4Dqush7B8RnFdwg.JPEG.kimnam124/IMG_3518.JPG?type=w800",
+                padak : "https://img.siksinhot.com/place/1481255980277050.jpg",
+            },
+            methods : {
+                increment : function(){
+                    this.number++
+                },
+                decrement : function(){
+                    this.number--
+                }
+            }
+        })
+    </script>
+</body>
+</html>

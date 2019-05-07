@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        {{5+10}}
+        <!-- 자바스크립트 문법 가능(연산) -->
+        <!-- {{const a = 10}} // 선언문은 사용불가 -->
+        <!-- {{if(true){return 10}}} // 분기문 사용불가 -->
+        {{true ? 100 : -1}}
+        <!-- 삼항연산자 가능 -->
+        {{message.split('').reverse().join('')}}
+        <!-- 매소드 가능 -->
+        {{message + "!!!"}}
+
+        <h1>{{reverseMsg}}</h1>
+        <h1>{{reverseMessage()}}</h1>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : "#app",
+            data:{
+                message:"안녕"
+            },
+            computed:{
+                reverseMsg:function(){
+                    return this.message.split('').reverse().join('')
+                    // 한번 계산이 되면 캐싱해 놈(유지)
+                    // 변수처럼 호출
+                }
+            },
+            methods:{
+                reverseMessage:function(){
+                    return this.message.split('').reverse().join('')
+                    // 실행될 때마다 연산함
+                    // 함수로 호출
+                }
+            }
+        })
+    </script>
+</body>
+</html>

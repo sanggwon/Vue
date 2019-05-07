@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <div>
+            <h1>할거</h1>
+            <ol>
+                <li v-for="todo in todos" v-if="!todo.complete">{{todo.text}}
+                    <input type="checkbox" v-model="todo.complete">
+                </li>
+            </ol>
+        </div>
+        <div>
+            <h1>한거</h1>
+            <ol>
+                <li v-for="todo in todos" v-if="todo.complete">{{todo.text}}
+                    <input type="checkbox" v-model="todo.complete">
+                </li>
+            </ol>
+        </div> -->
+        <input type="submit" @click="allClear" value="올클리어">
+        <br>
+        <input v-model="newTodo" v-on:keyup.enter="addTodo">
+        <input type="submit" v-on:click="addTodo" value="전송">
+        
+        <ol>
+            <li v-for="todo in todos" v-if="!todo.complete" v-on:click="check(todo)">{{todo.text}}</li>
+            <!-- <li v-else @click="check(todo)">[완료]</li> -->
+            <li v-else @click="todo.complete=false">[완료]</li>
+            <!-- 둘다 사용가능함 -->
+        </ol>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : "#app",
+            data:{
+                newTodo:'',
+                todos:[
+                    {complete:false, text:"봉추통닭시키기"},
+                    {complete:false, text:"조퇴하기"},
+                    {complete:true, text:"황프로님께 보고하기"},
+                ]
+            },
+            methods:{
+                check:function(todo){
+                    todo.complete = !todo.complete
+                },
+                addTodo:function(){
+                    this.todos.push(
+                        {
+                            complete:false,
+                            text:this.newTodo
+                        }
+                    )
+                    this.newTodo = ""
+                },
+                allClear:function(){
+                    this.todos = this.todos.filter(function(todo){
+                        return !todo.complete
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

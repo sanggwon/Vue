@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 여기는 html -->
+    <div id="app">
+        {{message}}
+    </div>
+    <div id="app2" v-bind:title="message">
+        <!-- vue의 옵션을 속성으로 넣기 위해서는 v-bind를 사용 -->
+        hi
+    </div>
+    <div id="app3">
+        <p v-if="seen">내가 보이니??</p>
+        <!-- if문으로 true false로 보여주거나 보여주지 않거나 -->
+    </div>
+    <div id="app4">
+        <h3 v-for="todo in todos">{{todo}}</h3>
+        <!-- v-for에 for문 문장을 사용하여 변수를 반복함 -->
+    </div>
+    <div id="app5">
+        <p>{{message}}</p>
+        <button v-on:click="reverse">메세지 뒤집기</button>
+        <!-- 메소드를 v-on에 click명령으로 실행 -->
+    </div>
+    <div id="app6">
+        <p>{{m}}</p>
+        <input v-model="m">
+        <!-- 양방향 바인드 -->
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 여기는 vue.js
+        const app = new Vue(
+            { 
+                el : "#app",
+                // el : 무엇이랑 연결시켜줄지
+                data : {
+                    message : "안녕하세요",
+                }
+            }
+       )
+       const app2 = new Vue({
+            el : "#app2",
+            data : {
+                message : `이 코드는 ${new Date()} 로드되었습니다.`
+            }
+       })
+       const app3 = new Vue({
+           el : "#app3",
+           data : {
+               seen : true
+           }
+       })
+       const app4 = new Vue({
+           el : "#app4",
+           data : {
+               todos : [
+                   "점심메뉴고르기",
+                   "점심먹기",
+                   "조퇴하기",
+                   "집에서 쉬기"
+               ]
+           }
+       })
+       const app5 = new Vue({
+           el : "#app5",
+            data : {
+                message : "안녕하세요!"
+            },
+            methods:{
+                reverse:function (){
+                    this.message = this.message.split('').reverse().join('')
+                    // 방금 생성된 자기자신, 파이썬에서는 self
+
+                }
+            }
+       })
+       const app6 = new Vue({
+           el : "#app6",
+           data : {
+               m : "Hi Vue"
+           }
+       })
+    </script>
+</body>
+</html>
